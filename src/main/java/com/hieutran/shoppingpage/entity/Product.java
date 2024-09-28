@@ -1,5 +1,6 @@
 package com.hieutran.shoppingpage.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,10 +23,10 @@ public class Product {
     private String description;
 
     @Column(name = "original_price")
-    private double originalPrice;
+    private Double originalPrice;
 
     @Column(name = "discount_price")
-    private double discountPrice;
+    private Double discountPrice;
 
     @Column(name = "discount_start_date")
     private LocalDateTime discountStartDate;
@@ -33,9 +34,15 @@ public class Product {
     @Column(name = "discount_end_date")
     private LocalDateTime discountEndDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProductSize> productSizes;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProductColor> productColors;
 
     @ElementCollection
     @CollectionTable(name = "Product_Image", joinColumns = @JoinColumn(name = "product_id"))
@@ -43,9 +50,9 @@ public class Product {
     private List<String> images;
 
     @Column(name = "average_rating")
-    private float averageRating;
+    private Float averageRating;
 
     @Column(name = "num_of_reviews")
-    private int numOfReviews;
+    private Integer numOfReviews;
 
 }

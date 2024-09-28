@@ -16,6 +16,7 @@ public class Color {
     private Integer id;
 
     @Column(name = "color_name")
+    @Enumerated(EnumType.STRING)
     private ColorName colorName;
 
     @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
