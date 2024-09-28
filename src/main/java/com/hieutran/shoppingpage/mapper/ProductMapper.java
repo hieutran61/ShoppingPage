@@ -9,13 +9,13 @@ public interface ProductMapper {
     Product toEntity(ProductDto productDto);
 
     @AfterMapping
-    default void linkProductSizes(@MappingTarget Product product) {
-        product.getProductSizes().forEach(productSize -> productSize.setProduct(product));
+    default void linkProductVariants(@MappingTarget Product product) {
+        product.getProductVariants().forEach(productVariant -> productVariant.setProduct(product));
     }
 
     @AfterMapping
-    default void linkProductColors(@MappingTarget Product product) {
-        product.getProductColors().forEach(productColor -> productColor.setProduct(product));
+    default void linkProductStyles(@MappingTarget Product product) {
+        product.getProductStyles().forEach(productStyle -> productStyle.setProduct(product));
     }
 
     ProductDto toDto(Product product);

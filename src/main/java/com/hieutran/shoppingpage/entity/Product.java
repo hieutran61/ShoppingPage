@@ -2,7 +2,9 @@ package com.hieutran.shoppingpage.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "Product")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +43,10 @@ public class Product {
     private Category category;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductSize> productSizes;
+    private List<ProductVariant> productVariants;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductColor> productColors;
+    private List<ProductStyle> productStyles;
 
     @ElementCollection
     @CollectionTable(name = "Product_Image", joinColumns = @JoinColumn(name = "product_id"))

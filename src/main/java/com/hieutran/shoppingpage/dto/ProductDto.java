@@ -19,8 +19,8 @@ public class ProductDto implements Serializable {
     LocalDateTime discountStartDate;
     LocalDateTime discountEndDate;
     CategoryDto category;
-    List<ProductSizeDto> productSizes;
-    List<ProductColorDto> productColors;
+    List<ProductVariantDto> productVariants;
+    List<ProductStyleDto> productStyles;
     List<String> images;
     Float averageRating;
     Integer numOfReviews;

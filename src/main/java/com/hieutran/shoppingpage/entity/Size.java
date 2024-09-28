@@ -20,6 +20,6 @@ public class Size {
     private SizeName sizeName;
 
     @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
-    private List<ProductSize> productSizes;
+    private List<ProductVariant> productVariants;
 
 }

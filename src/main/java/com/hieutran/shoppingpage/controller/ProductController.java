@@ -1,13 +1,13 @@
 package com.hieutran.shoppingpage.controller;
 
 
+import com.hieutran.shoppingpage.dto.ProductDto;
+import com.hieutran.shoppingpage.dto.ProductFilterDto;
 import com.hieutran.shoppingpage.entity.Product;
 import com.hieutran.shoppingpage.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +22,13 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductDto>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<ProductDto>> getProductsByFilter(@RequestBody ProductFilterDto filter) {
+        return ResponseEntity.ok(productService.getProductsByFilter(filter));
     }
 
 }
